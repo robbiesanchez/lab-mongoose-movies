@@ -1,0 +1,32 @@
+{{!-- {{#if user}}
+<p>Hello, {{user.username}}</p>
+
+{{/if}} --}}
+
+
+{{#each theMovie}}
+
+<div>
+    <a href="/movies/{{this._id}}">
+
+        <h3>
+            {{this.title}}
+        </h3>
+    </a>
+
+    <h5>Genre: {{this.genre}}</h5>
+    <p>Plot: {{this.plot}}</p>
+    {{!-- <a href="/books/edit/{{this._id}}">Edit This Book</a> --}}
+
+    <form action="/movies/delete/{{this._id}}" method="POST">
+    <button>Delete</button>
+    </form>
+    
+</div>
+
+
+
+
+<hr>
+
+{{/each}}

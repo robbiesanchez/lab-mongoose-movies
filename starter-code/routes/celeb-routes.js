@@ -7,7 +7,7 @@ router.get('/celebrities', (req, res, next) => {
   // console.log(req.session)
   Celebrity.find()
   .then((allTheCelebrities)=>{
-    res.render('bunchaCelebrities', {theCelebrity: allTheCelebrities});
+    res.render('celebrity-views/bunchaCelebrities', {theCelebrity: allTheCelebrities});
       })
   .catch((err)=>{
     next(err);
@@ -16,8 +16,8 @@ router.get('/celebrities', (req, res, next) => {
 });
 
 
-router.get('/create', (req, res, next)=>{
-  res.render('newCelebrity');
+router.get('/create-celeb', (req, res, next)=>{
+  res.render('celebrity-views/newCelebrity');
 })
 
 router.get('/', (req, res, next)=>{
@@ -25,14 +25,12 @@ router.get('/', (req, res, next)=>{
 })
 
 
-
-
 router.get('/celebrities/:theIdOfTheCelebrity', (req, res, next)=>{
   let id = req.params.theIdOfTheCelebrity;
 
   Celebrity.findById(id)
   .then((theCelebrity)=>{
-    res.render('singleCelebrity', {celebrity: theCelebrity})
+    res.render('celebrity-views/singleCelebrity', {celebrity: theCelebrity})
   })
   .catch((err)=>{
     next(err);
@@ -110,16 +108,16 @@ router.post('/create-the-celebrity', (req, res, next)=>{
 
 
 
-// router.post('/books/delete/:theID', (req, res, next)=>{
-//   Book.findByIdAndRemove(req.params.theID)
-//   .then((wnvefih)=>{
-//     res.redirect('/');
-//   })
-//   .catch((err)=>{
-//     next(err)
-//   })
+router.post('/celebrities/delete/:theID', (req, res, next)=>{
+  Celebrity.findByIdAndRemove(req.params.theID)
+  .then((response)=>{
+    res.redirect('/celebrities');
+  })
+  .catch((err)=>{
+    next(err)
+  })
 
-// })
+})
 
 
 
